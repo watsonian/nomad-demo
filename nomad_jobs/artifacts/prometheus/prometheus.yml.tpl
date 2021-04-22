@@ -5,13 +5,13 @@ global:
 alerting:
   alertmanagers:
     - consul_sd_configs:
-        - server: "consul.service.consul:8500"
+        - server: "192.168.86.30:8500"
           services: ["alertmanager"]
 
 scrape_configs:
   - job_name: "consul"
     consul_sd_configs:
-      - server: "consul.service.consul:8500"
+      - server: "192.168.86.30:8500"
         tags: ["prometheus"]
     relabel_configs:
       - source_labels: [__meta_consul_tags]
@@ -26,7 +26,7 @@ scrape_configs:
 
   - job_name: "nomad"
     consul_sd_configs:
-      - server: "consul.service.consul:8500"
+      - server: "192.168.86.30:8500"
         services: ["nomad-client", "nomad"]
     metrics_path: /v1/metrics
     params:
