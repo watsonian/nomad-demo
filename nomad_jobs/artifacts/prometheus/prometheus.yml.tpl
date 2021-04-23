@@ -42,7 +42,7 @@ scrape_configs:
 
   - job_name: "prometheus"
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets: ["localhost:{{ env "NOMAD_HOST_PORT_prometheus_ui" }}"]
     relabel_configs:
       - target_label: instance
         replacement: "{{ env "attr.unique.hostname" }}"
